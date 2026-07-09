@@ -9,6 +9,7 @@
   --sand-deep: #E2D3B4;
   --leaf: #4A7C59;
   --leaf-deep: #3C6A49;
+  --sky-blue: #4E9BC4;
   --night: #131B24;
   --night-deep: #0B1116;
   --glow: #FFE29A;
@@ -26,12 +27,7 @@ body {
 
 /* ---------- HERO / GAUGE ---------- */
 
-.hero {
-  background: var(--dusk);
-  color: var(--sand);
-  padding: 40px 24px 44px;
-  text-align: center;
-}
+.hero { background: var(--dusk); color: var(--sand); padding: 40px 24px 44px; text-align: center; }
 
 .eyebrow {
   font-family: 'IBM Plex Mono', monospace;
@@ -49,13 +45,7 @@ body {
   letter-spacing: 0.02em;
 }
 
-.subtitle {
-  margin: 0 auto 28px;
-  max-width: 540px;
-  color: var(--sand-deep);
-  font-size: 15px;
-  line-height: 1.6;
-}
+.subtitle { margin: 0 auto 28px; max-width: 540px; color: var(--sand-deep); font-size: 15px; line-height: 1.6; }
 
 .gauge-wrap { display: flex; flex-direction: column; align-items: center; gap: 12px; }
 
@@ -82,15 +72,8 @@ body {
   overflow: hidden;
 }
 
-.gauge-cells span {
-  background: rgba(242,166,90,0.08);
-  transition: background 0.4s ease, box-shadow 0.4s ease;
-}
-
-.gauge-cells span.filled {
-  background: var(--amber);
-  box-shadow: 0 0 8px rgba(242,166,90,0.7);
-}
+.gauge-cells span { background: rgba(242,166,90,0.08); transition: background 0.4s ease, box-shadow 0.4s ease; }
+.gauge-cells span.filled { background: var(--amber); box-shadow: 0 0 8px rgba(242,166,90,0.7); }
 
 .gauge-label {
   position: relative;
@@ -103,7 +86,6 @@ body {
 }
 
 .percent-sign { font-size: 16px; margin-left: 2px; }
-
 .gauge-caption { font-size: 13px; color: var(--sand-deep); margin: 0; }
 #gaugeStatus { color: var(--amber-soft); font-weight: 500; }
 
@@ -126,7 +108,7 @@ body {
 .storage-dot.ess { background: var(--sand); }
 .storage-dot.grid { background: var(--dusk); }
 
-/* ---------- SCENE STAGE (풍경 전환) ---------- */
+/* ---------- SCENE STAGE ---------- */
 
 .scene-stage {
   position: relative;
@@ -137,115 +119,156 @@ body {
   background: var(--night-deep);
 }
 
-.scene {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transform: scale(1.03);
-  transition: opacity 0.9s ease, transform 0.9s ease;
-  pointer-events: none;
-}
-
-.scene.active {
-  opacity: 1;
-  transform: scale(1);
-  pointer-events: auto;
-}
+.scene { position: absolute; inset: 0; opacity: 0; transform: scale(1.03); transition: opacity 0.9s ease, transform 0.9s ease; pointer-events: none; }
+.scene.active { opacity: 1; transform: scale(1); pointer-events: auto; }
 
 /* ---------- 놀이터 풍경 ---------- */
 
 .landscape-svg { width: 100%; height: 100%; display: block; }
 
 .sun { fill: var(--amber); }
-.cloud { fill: rgba(255,255,255,0.75); }
+.cloud { fill: rgba(255,255,255,0.8); }
+.hills { fill: #A9CE93; opacity: 0.6; }
 .grass { fill: var(--leaf); }
 .grass-edge { fill: none; stroke: var(--leaf-deep); stroke-width: 2; }
+.dirt-path { fill: #C9A876; opacity: 0.55; }
 
-.device-label {
-  font-family: 'Noto Sans KR', sans-serif;
-  font-weight: 700;
-  font-size: 15px;
-  fill: var(--dusk-deep);
-}
+.turbine-pole { stroke: #E8E1CF; stroke-width: 5; stroke-linecap: round; }
+.turbine-blade { stroke: #FFFFFF; stroke-width: 5; stroke-linecap: round; }
+.turbine-blades { transform-origin: center; animation: turbineSpinSlow 6s linear infinite; }
+@keyframes turbineSpinSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-.device-hotspot { cursor: pointer; transition: transform 0.15s ease; transform-box: fill-box; transform-origin: center; }
-.device-hotspot:hover { transform: translateY(-3px); }
+.canopy-post { stroke: #8A7A5C; stroke-width: 6; }
+.canopy-roof { fill: #2E4A63; stroke: #1F344A; stroke-width: 2; }
+.canopy-line { stroke: #4A6C8C; stroke-width: 2; }
 
-.slide-frame, .plank, .wheel-ring, .wheel-spoke, .carousel-base, .swing-bar, .swing-rope, .pad-base {
-  fill: none;
-  stroke: var(--sand);
-  stroke-width: 4;
-  stroke-linecap: round;
-}
+.device-label { font-family: 'Noto Sans KR', sans-serif; font-weight: 700; font-size: 15px; fill: var(--dusk-deep); }
 
-.pad-base { fill: var(--dusk-deep); stroke: var(--amber-soft); stroke-width: 3; }
-.pad-number { fill: var(--sand); font-family: 'IBM Plex Mono', monospace; font-size: 30px; font-weight: 600; }
+.device-hotspot { cursor: pointer; }
 
-.rider { fill: var(--amber); }
-.rider-b { fill: var(--leaf-deep); }
+.slide-frame { fill: none; stroke: #E2822F; stroke-width: 5; stroke-linecap: round; }
+.slide-ladder { stroke: var(--sand); stroke-width: 3; stroke-linecap: round; }
+.slide-rung { stroke: var(--sand); stroke-width: 3; stroke-linecap: round; }
+
+.swing-frame { stroke: var(--sand-deep); stroke-width: 5; stroke-linecap: round; }
+.swing-bar, .swing-rope { fill: none; stroke: var(--sand); stroke-width: 4; stroke-linecap: round; }
+
+.plank, .seesaw-pivot { }
+.plank { fill: none; stroke: #E2822F; stroke-width: 5; stroke-linecap: round; }
 .seesaw-pivot { fill: var(--sand-deep); }
 
-/* device motion animations */
+.carousel-base { fill: none; stroke: #6B8FA3; stroke-width: 5; }
+.carousel-hub { fill: #6B8FA3; }
+
+.wheel-ring, .wheel-spoke { fill: none; stroke: #6B8FA3; stroke-width: 5; stroke-linecap: round; }
+.wheel-hub { fill: var(--amber); }
+.wheel-stand { fill: #8A7A5C; }
+
+.pad-tile { opacity: 0.9; }
+.pad-tile-a { fill: #E2822F; }
+.pad-tile-b { fill: var(--leaf-deep); }
+.pad-tile-c { fill: #6B8FA3; }
+.pad-number { fill: white; font-family: 'IBM Plex Mono', monospace; font-size: 22px; font-weight: 600; }
+
+/* 아이 캐릭터 */
+.rider-head { fill: #F2C79C; }
+.rider-head-b { fill: #E8B98A; }
+.rider-body { fill: var(--amber); }
+.rider-body-b { fill: var(--leaf-deep); }
+
+/* ---------- 동작 애니메이션 ---------- */
+
 #rider-slide { transform-origin: center; }
 #rider-slide.playing { animation: slideDown 0.9s ease-in forwards; }
-@keyframes slideDown {
-  0%   { transform: translate(0,0); }
-  100% { transform: translate(140px, 110px); }
-}
+@keyframes slideDown { 0% { transform: translate(0,0); } 100% { transform: translate(140px, 108px); } }
 
 .swing-pivot { transform-origin: 100px 10px; }
 .swing-pivot.playing { animation: swingMotion 0.9s ease-in-out; }
 @keyframes swingMotion {
-  0%   { transform: rotate(0deg); }
-  25%  { transform: rotate(28deg); }
-  50%  { transform: rotate(0deg); }
-  75%  { transform: rotate(-28deg); }
+  0% { transform: rotate(0deg); } 25% { transform: rotate(28deg); }
+  50% { transform: rotate(0deg); } 75% { transform: rotate(-28deg); }
   100% { transform: rotate(0deg); }
 }
 
 .seesaw-plank { transform-origin: 100px 100px; }
 .seesaw-plank.playing { animation: seesawMotion 0.9s ease-in-out; }
 @keyframes seesawMotion {
-  0%   { transform: rotate(0deg); }
-  25%  { transform: rotate(-16deg); }
-  75%  { transform: rotate(16deg); }
-  100% { transform: rotate(0deg); }
+  0% { transform: rotate(0deg); } 25% { transform: rotate(-16deg); }
+  75% { transform: rotate(16deg); } 100% { transform: rotate(0deg); }
 }
 
 .carousel-spin { transform-origin: 100px 80px; }
 .carousel-spin.playing { animation: spinMotion 0.9s linear; }
 @keyframes spinMotion { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-#rider-numberpad.playing .pad-base { animation: padPress 0.35s ease-in-out; }
-@keyframes padPress { 0%, 100% { transform: scale(1); } 50% { transform: scale(0.92); } }
+#rider-numberpad.playing .pad-tile { animation: padPress 0.35s ease-in-out; }
+@keyframes padPress { 0%, 100% { transform: scale(1); } 50% { transform: scale(0.9); } }
 
 .wheel-spin { transform-origin: 100px 80px; }
 .wheel-spin.playing { animation: spinMotion 0.9s ease-in-out; }
 
-/* ---------- 스파크 이펙트 (HTML 오버레이) ---------- */
+/* ---------- 스파크 이펙트 ---------- */
 
 .spark-field { position: absolute; inset: 0; pointer-events: none; }
-
-.spark-layer {
-  position: absolute;
-  width: 0;
-  height: 0;
-  transform: translate(-50%, -50%);
-}
+.spark-layer { position: absolute; width: 0; height: 0; transform: translate(-50%, -50%); }
 
 .spark {
   position: absolute;
-  width: 6px;
-  height: 6px;
+  width: 6px; height: 6px;
   border-radius: 50%;
   background: var(--amber);
   box-shadow: 0 0 6px var(--amber);
   animation: sparkOut 0.6s ease-out forwards;
 }
-
 @keyframes sparkOut {
   from { transform: translate(0,0) scale(1); opacity: 1; }
   to { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; }
+}
+
+/* ---------- 손가락 터치 버튼 ---------- */
+
+.touch-field { position: absolute; inset: 0; pointer-events: none; transition: opacity 0.4s ease; }
+.touch-field.hidden { opacity: 0; pointer-events: none; }
+
+.touch-btn {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.88);
+  border: 2px dashed var(--amber);
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform 0.12s ease, background 0.12s ease;
+}
+
+.touch-btn::before {
+  content: '';
+  position: absolute;
+  inset: -7px;
+  border-radius: 50%;
+  border: 2px solid var(--amber);
+  opacity: 0.55;
+  animation: ringPulse 1.8s ease-out infinite;
+}
+
+@keyframes ringPulse {
+  from { transform: scale(0.85); opacity: 0.55; }
+  to   { transform: scale(1.55); opacity: 0; }
+}
+
+.touch-btn:active { transform: translate(-50%, -50%) scale(0.88); background: var(--amber-soft); }
+
+.touch-btn.tapped { animation: tapBounce 0.3s ease; }
+@keyframes tapBounce {
+  0%   { transform: translate(-50%, -50%) scale(1); }
+  40%  { transform: translate(-50%, -50%) scale(0.8); }
+  100% { transform: translate(-50%, -50%) scale(1); }
 }
 
 /* ---------- 밤의 마을 풍경 ---------- */
@@ -325,4 +348,5 @@ body {
 @media (max-width: 480px) {
   .gauge-cells { grid-template-columns: repeat(10, 1fr); }
   .device-label { font-size: 20px; }
+  .touch-btn { width: 44px; height: 44px; font-size: 20px; }
 }
