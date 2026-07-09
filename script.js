@@ -17,15 +17,14 @@ const devices = {
 const gaugeCells = document.getElementById('gaugeCells');
 const gaugePercent = document.getElementById('gaugePercent');
 const gaugeStatus = document.getElementById('gaugeStatus');
-const playgroundSvg = document.getElementById('playgroundSvg');
 const scenePlayground = document.getElementById('scenePlayground');
 const sceneVillage = document.getElementById('sceneVillage');
+const touchField = document.getElementById('touchField');
 const resetBtn = document.getElementById('resetBtn');
 
 // ---------- 게이지 셀 생성 ----------
 for (let i = 0; i < CELL_COUNT; i++) {
-  const span = document.createElement('span');
-  gaugeCells.appendChild(span);
+  gaugeCells.appendChild(document.createElement('span'));
 }
 const cellEls = gaugeCells.querySelectorAll('span');
 
@@ -76,14 +75,19 @@ function playDevice(key) {
 
   if (energy >= MAX_ENERGY && !charged) {
     charged = true;
+    touchField.classList.add('hidden');
     setTimeout(transitionToVillage, 500);
   }
 }
 
-playgroundSvg.addEventListener('click', (e) => {
-  const hotspot = e.target.closest('.device-hotspot');
-  if (!hotspot) return;
-  playDevice(hotspot.dataset.device);
+// 손가락 버튼 클릭 처리 (+ 눌림 피드백)
+touchField.addEventListener('click', (e) => {
+  const btn = e.target.closest('.touch-btn');
+  if (!btn) return;
+  btn.classList.remove('tapped');
+  void btn.offsetWidth;
+  btn.classList.add('tapped');
+  playDevice(btn.dataset.device);
 });
 
 // ---------- 장면 전환: 놀이터 → 마을 ----------
@@ -101,6 +105,7 @@ function resetAll() {
   sceneVillage.classList.remove('lit');
   sceneVillage.classList.remove('active');
   scenePlayground.classList.add('active');
+  touchField.classList.remove('hidden');
 }
 
 resetBtn.addEventListener('click', resetAll);
