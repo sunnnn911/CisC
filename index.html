@@ -11,7 +11,7 @@
   <header class="hero">
     <p class="eyebrow">지속가능 에너지 탐구 프로젝트</p>
     <h1>에너지 놀이터</h1>
-    <p class="subtitle">놀이터 풍경 속 놀이기구를 터치해 아이들이 만드는 운동에너지를 전기로 바꿔보세요</p>
+    <p class="subtitle">놀이기구 위 손가락 버튼을 터치해 아이들이 만드는 운동에너지를 전기로 바꿔보세요</p>
 
     <div class="gauge-wrap">
       <div class="gauge">
@@ -37,33 +37,79 @@
       <svg viewBox="0 0 1000 420" class="landscape-svg" id="playgroundSvg" preserveAspectRatio="xMidYMax meet">
         <defs>
           <linearGradient id="daySky" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#BFE6F5" />
+            <stop offset="0%" stop-color="#8FCBEA" />
             <stop offset="100%" stop-color="#EAF6E8" />
           </linearGradient>
         </defs>
 
         <rect x="0" y="0" width="1000" height="310" fill="url(#daySky)" />
-        <circle cx="890" cy="65" r="34" class="sun" />
+        <circle cx="890" cy="60" r="34" class="sun" />
         <ellipse cx="150" cy="70" rx="46" ry="16" class="cloud" />
         <ellipse cx="220" cy="60" rx="34" ry="13" class="cloud" />
         <ellipse cx="600" cy="50" rx="40" ry="14" class="cloud" />
         <ellipse cx="660" cy="62" rx="26" ry="10" class="cloud" />
 
+        <!-- 먼 산/나무 라인 -->
+        <path d="M0,300 Q120,255 260,290 Q420,250 560,288 Q740,248 1000,292 L1000,300 L0,300 Z" class="hills" />
+
+        <!-- 풍력 발전기 (양쪽) -->
+        <g class="turbine-day">
+          <line x1="55" y1="300" x2="55" y2="150" class="turbine-pole" />
+          <g class="turbine-blades" id="dayBlades1">
+            <line x1="55" y1="150" x2="55" y2="108" class="turbine-blade" />
+            <line x1="55" y1="150" x2="90" y2="168" class="turbine-blade" />
+            <line x1="55" y1="150" x2="20" y2="168" class="turbine-blade" />
+          </g>
+        </g>
+        <g class="turbine-day">
+          <line x1="945" y1="300" x2="945" y2="140" class="turbine-pole" />
+          <g class="turbine-blades" id="dayBlades2">
+            <line x1="945" y1="140" x2="945" y2="98" class="turbine-blade" />
+            <line x1="945" y1="140" x2="980" y2="158" class="turbine-blade" />
+            <line x1="945" y1="140" x2="910" y2="158" class="turbine-blade" />
+          </g>
+        </g>
+
         <rect x="0" y="300" width="1000" height="120" class="grass" />
         <path d="M0,300 Q500,285 1000,300" class="grass-edge" />
+        <ellipse cx="500" cy="335" rx="470" ry="46" class="dirt-path" />
+
+        <!-- 태양광 패널 지붕 (놀이터 중앙 캐노피) -->
+        <g class="solar-canopy">
+          <line x1="270" y1="200" x2="270" y2="300" class="canopy-post" />
+          <line x1="730" y1="200" x2="730" y2="300" class="canopy-post" />
+          <polygon points="250,205 750,205 780,175 220,175" class="canopy-roof" />
+          <line x1="290" y1="196" x2="315" y2="181" class="canopy-line" />
+          <line x1="360" y1="196" x2="385" y2="181" class="canopy-line" />
+          <line x1="430" y1="196" x2="455" y2="181" class="canopy-line" />
+          <line x1="500" y1="196" x2="525" y2="181" class="canopy-line" />
+          <line x1="570" y1="196" x2="595" y2="181" class="canopy-line" />
+          <line x1="640" y1="196" x2="665" y2="181" class="canopy-line" />
+          <line x1="710" y1="196" x2="735" y2="181" class="canopy-line" />
+        </g>
 
         <!-- 미끄럼틀 -->
         <svg x="15" y="170" width="150" height="130" viewBox="0 0 200 160" class="device-hotspot" data-device="slide">
           <polyline points="30,150 30,40 170,150" class="slide-frame" />
-          <circle cx="30" cy="35" r="9" class="rider" id="rider-slide" />
+          <line x1="24" y1="46" x2="24" y2="150" class="slide-ladder" />
+          <line x1="24" y1="60" x2="16" y2="60" class="slide-rung" />
+          <line x1="24" y1="80" x2="16" y2="80" class="slide-rung" />
+          <line x1="24" y1="100" x2="16" y2="100" class="slide-rung" />
+          <g id="rider-slide">
+            <circle cx="30" cy="30" r="8" class="rider-head" />
+            <rect x="23" y="36" width="14" height="14" rx="4" class="rider-body" />
+          </g>
         </svg>
 
         <!-- 그네 -->
         <svg x="180" y="170" width="150" height="130" viewBox="0 0 200 160" class="device-hotspot" data-device="swing">
+          <line x1="30" y1="150" x2="60" y2="8" class="swing-frame" />
+          <line x1="170" y1="150" x2="140" y2="8" class="swing-frame" />
           <line x1="40" y1="10" x2="160" y2="10" class="swing-bar" />
           <g id="rider-swing" class="swing-pivot">
-            <line x1="0" y1="0" x2="0" y2="90" class="swing-rope" />
-            <circle cx="0" cy="95" r="9" class="rider" />
+            <line x1="0" y1="0" x2="0" y2="82" class="swing-rope" />
+            <circle cx="0" cy="90" r="8" class="rider-head" />
+            <rect x="-7" y="96" width="14" height="14" rx="4" class="rider-body rider-body-b" />
           </g>
         </svg>
 
@@ -72,36 +118,51 @@
           <polygon points="90,120 110,120 100,100" class="seesaw-pivot" />
           <g id="rider-seesaw" class="seesaw-plank">
             <line x1="20" y1="0" x2="180" y2="0" class="plank" />
-            <circle cx="35" cy="-9" r="9" class="rider" />
-            <circle cx="165" cy="-9" r="9" class="rider rider-b" />
+            <circle cx="35" cy="-8" r="8" class="rider-head" />
+            <rect x="28" y="-2" width="14" height="14" rx="4" class="rider-body" />
+            <circle cx="165" cy="-8" r="8" class="rider-head rider-head-b" />
+            <rect x="158" y="-2" width="14" height="14" rx="4" class="rider-body rider-body-b" />
           </g>
         </svg>
 
         <!-- 회전 놀이기구 -->
         <svg x="510" y="170" width="150" height="130" viewBox="0 0 200 160" class="device-hotspot" data-device="carousel">
           <circle cx="100" cy="80" r="55" class="carousel-base" />
+          <circle cx="100" cy="80" r="10" class="carousel-hub" />
           <g id="rider-carousel" class="carousel-spin">
-            <circle cx="100" cy="35" r="8" class="rider" />
-            <circle cx="145" cy="80" r="8" class="rider rider-b" />
-            <circle cx="100" cy="125" r="8" class="rider" />
-            <circle cx="55" cy="80" r="8" class="rider rider-b" />
+            <circle cx="100" cy="30" r="7" class="rider-head" />
+            <rect x="94" y="35" width="12" height="12" rx="3" class="rider-body" />
+            <circle cx="150" cy="80" r="7" class="rider-head rider-head-b" />
+            <rect x="144" y="74" width="12" height="12" rx="3" class="rider-body rider-body-b" />
+            <circle cx="100" cy="130" r="7" class="rider-head" />
+            <rect x="94" y="119" width="12" height="12" rx="3" class="rider-body" />
+            <circle cx="50" cy="80" r="7" class="rider-head rider-head-b" />
+            <rect x="44" y="74" width="12" height="12" rx="3" class="rider-body rider-body-b" />
           </g>
         </svg>
 
         <!-- 숫자 놀이 패드 -->
         <svg x="675" y="170" width="150" height="130" viewBox="0 0 200 160" class="device-hotspot" data-device="numberpad">
           <g id="rider-numberpad">
-            <rect x="60" y="60" width="80" height="80" rx="10" class="pad-base" />
-            <text x="100" y="108" text-anchor="middle" class="pad-number">7</text>
+            <rect x="45" y="45" width="46" height="46" rx="8" class="pad-tile pad-tile-a" />
+            <rect x="95" y="45" width="46" height="46" rx="8" class="pad-tile pad-tile-b" />
+            <rect x="45" y="95" width="46" height="46" rx="8" class="pad-tile pad-tile-c" />
+            <rect x="95" y="95" width="46" height="46" rx="8" class="pad-tile pad-tile-a" />
+            <text x="68" y="75" text-anchor="middle" class="pad-number">2</text>
+            <text x="118" y="75" text-anchor="middle" class="pad-number">7</text>
+            <text x="68" y="125" text-anchor="middle" class="pad-number">3</text>
+            <text x="118" y="125" text-anchor="middle" class="pad-number">9</text>
           </g>
         </svg>
 
         <!-- 손잡이 회전 장치 -->
         <svg x="840" y="170" width="150" height="130" viewBox="0 0 200 160" class="device-hotspot" data-device="wheel">
+          <rect x="90" y="80" width="20" height="55" class="wheel-stand" />
           <g id="rider-wheel" class="wheel-spin">
-            <circle cx="100" cy="80" r="45" class="wheel-ring" />
-            <line x1="100" y1="35" x2="100" y2="125" class="wheel-spoke" />
-            <line x1="55" y1="80" x2="145" y2="80" class="wheel-spoke" />
+            <circle cx="100" cy="80" r="42" class="wheel-ring" />
+            <line x1="100" y1="38" x2="100" y2="122" class="wheel-spoke" />
+            <line x1="58" y1="80" x2="142" y2="80" class="wheel-spoke" />
+            <circle cx="100" cy="80" r="9" class="wheel-hub" />
           </g>
         </svg>
 
@@ -120,6 +181,15 @@
         <div class="spark-layer" id="spark-carousel" style="left:58.5%; top:56%;"></div>
         <div class="spark-layer" id="spark-numberpad" style="left:75%; top:56%;"></div>
         <div class="spark-layer" id="spark-wheel" style="left:91.5%; top:56%;"></div>
+      </div>
+
+      <div class="touch-field" id="touchField">
+        <button class="touch-btn" data-device="slide" style="left:9%; top:56%;">👆</button>
+        <button class="touch-btn" data-device="swing" style="left:25.5%; top:56%;">👆</button>
+        <button class="touch-btn" data-device="seesaw" style="left:42%; top:56%;">👆</button>
+        <button class="touch-btn" data-device="carousel" style="left:58.5%; top:56%;">👆</button>
+        <button class="touch-btn" data-device="numberpad" style="left:75%; top:56%;">👆</button>
+        <button class="touch-btn" data-device="wheel" style="left:91.5%; top:56%;">👆</button>
       </div>
     </section>
 
